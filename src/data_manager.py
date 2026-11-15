@@ -13,8 +13,11 @@ class Rate:
     usd: int
     eur: int
 
+def _normalize_rate(raw_value: str) -> str:
+    return raw_value.strip().replace(".", "").replace(",", ".")
+
 def _rate_to_cents(raw_value: str) -> int:
-    quantized = Decimal(raw_value.strip().replace(",", ".")).quantize(
+    quantized = Decimal(_normalize_rate(raw_value)).quantize(
         Decimal("0.01"), rounding=ROUND_HALF_UP
     )
     return int(quantized * 100)

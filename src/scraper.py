@@ -16,7 +16,7 @@ def _text(soup: BeautifulSoup, selector: str) -> str | None:
     node = soup.select_one(selector)
     if node is None:
         return None
-    text = node.get_text(strip=True).replace(",", ".")
+    text = node.get_text(strip=True)
     return text or None
 
 def _content(soup: BeautifulSoup, selector: str) -> str | None:
